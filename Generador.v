@@ -365,6 +365,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
                text_rgb = 3'b001;
 					else
 					text_rgb = 3'b100;
+				else
+				text_rgb = 3'b000;
          end
       else if (CRONOMETRO_H)
          begin
