@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    19:02:19 04/04/2016 
+// Create Date:    00:26:04 04/13/2016 
 // Design Name: 
 // Module Name:    Generador 
 // Project Name: 
@@ -21,6 +21,7 @@
 module Generador(
 
     input wire clk,alarma,clock_nexys,
+	 input wire [3:0]control,
     input wire [9:0] pix_x, pix_y,
 	 input wire [7:0] R_Dia_Fecha,R_Mes_Fecha,R_Ano_Fecha,R_Hora_Hora,R_Hora_Minutos,R_Hora_Segundos,R_Cronometro_Hora,R_Cronometro_Minutos,R_Cronometro_Segundo,
     output reg [2:0] text_rgb
@@ -261,6 +262,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_D_F;
             if (font_bit)
                text_rgb = 3'b011;
+					else if (control == 4'd3)
+					text_rgb = 3'b100;
 					
          end
 		else if (Mes_Fecha)
@@ -270,7 +273,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_M_F;
             if (font_bit)
                text_rgb = 3'b011;
-				
+				else if (control == 4'd4)
+					text_rgb = 3'b100;
         end
 		  	else if (Ano_Fecha)
          begin
@@ -279,7 +283,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_A_F;
             if (font_bit)
                text_rgb = 3'b011;
-					
+					else if (control == 4'd5)
+					text_rgb = 3'b100;
         end
       else if (Hora)
          begin
@@ -298,6 +303,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_H_H;
             if (font_bit)
                text_rgb = 3'b011;
+					else if (control == 4'd2)
+					text_rgb = 3'b100;
 					
          end
 		 else if (Hora_S)
@@ -307,7 +314,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_H_S;
             if (font_bit)
                text_rgb = 3'b011;
-				
+				else if (control == 4'd0)
+					text_rgb = 3'b100;
          end
 		 else if (Hora_M)
          begin
@@ -316,6 +324,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_H_M;
             if (font_bit)
                text_rgb = 3'b011;
+					else if (control == 4'd1)
+					text_rgb = 3'b100;
          end
 		 else if (Hora_AM)
          begin
@@ -375,6 +385,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_C_H;
             if (font_bit)
                text_rgb = 3'b011;
+				else if (control == 4'd8)
+					text_rgb = 3'b100;
 				
          end
 		else if (CRONOMETRO_M)
@@ -384,6 +396,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_C_M;
             if (font_bit)
                text_rgb = 3'b011;
+				else if (control == 4'd7)
+					text_rgb = 3'b100;
 					
          end
 		else if (CRONOMETRO_S)
@@ -393,7 +407,8 @@ assign CRONOMETRO_S = (pix_y[9:6]==5) &&
             bit_addr = bit_addr_C_S;
             if (font_bit)
                text_rgb = 3'b011;
-					
+				else if (control == 4'd6)
+					text_rgb = 3'b100;	
          end
    end
    
